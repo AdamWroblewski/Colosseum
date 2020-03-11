@@ -1,5 +1,8 @@
 package com.company.model.gladiators;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public abstract class Gladiator {
@@ -11,12 +14,20 @@ public abstract class Gladiator {
     private float baseDex;
     private int lvl = 1;
     private String name;
+    private float damageDealt;
 
-    public Gladiator() {
-
-    }
+    private static List<String> names = new ArrayList<>(Arrays.asList(
+            "Flash", "Demon", "Grace", "Wiggles",
+            "Lucky", "Torch", "Charisma", "Jumper",
+            "Jackal", "Princess", "Buster", "Shorty",
+            "Bear", "Mad Dog", "Digger", "Cheery",
+            "Smiley", "Bulldog", "Mistletoe", "Starfall",
+            "Rip", "Devil", "Jackhammer", "Lock",
+            "Indie", "Barber", "Mistletoe", "Bull",
+            "Skinny", "Speed", "Knight", "Reaper"));
 
     public Gladiator(float hpModifier, float spModifier, float dexModifier) {
+        name = names.remove(0);
         baseHP = generateStatistic() * hpModifier;
         baseSP = generateStatistic() * spModifier;
         baseDex = generateStatistic() * dexModifier;
@@ -32,15 +43,16 @@ public abstract class Gladiator {
         float chance = Math.max(10, Math.min(unclampedChance, 100));
         float lowerAttackRange = 0.1F;
         float upperAttackRange = 0.5F;
-        float dmg = (float) (lowerAttackRange + Math.random() * (upperAttackRange - lowerAttackRange)) * this.getSP();
+        damageDealt = (float) (lowerAttackRange + Math.random() * (upperAttackRange - lowerAttackRange)) * this.getSP();
 
         if (random.nextFloat() * 100 < chance) {
-            enemy.decreaseHP(dmg);
-        }
+            enemy.decreaseHP(enemy, damageDealt);
+        } else
+            damageDealt = 0;
     }
 
-    private void decreaseHP(float dmg) {
-        this.baseHP -= dmg / lvl;
+    private void decreaseHP(Gladiator enemy, float dmg) {
+        enemy.baseHP -= dmg;
     }
 
     public float getHP() {
@@ -55,11 +67,19 @@ public abstract class Gladiator {
         return baseDex * lvl;
     }
 
-    protected void advanceLvl() {
+    public void advanceLvl() {
         this.lvl++;
     }
 
     public String getName() {
         return name;
+    }
+
+    public float getDamageDealt() {
+        return damageDealt;
+    }
+
+    public int getLvl() {
+        return lvl;
     }
 }
