@@ -1,10 +1,34 @@
 package com.company.model.tournamentTree;
 
 import com.company.controller.Combat;
-import com.company.model.gladiators.Gladiator;
-import com.company.model.gladiators.Swordsman;
+import com.company.model.gladiators.*;
+
+import java.util.Random;
 
 public class TournamentSchedule {
+
+    private enum GladiatorType {
+
+        Swordsman, Archer, Brutal, Assassin;
+
+        private static Random random = new Random();
+
+        public static Gladiator getRandomGladiatorType() {
+            int indicator = random.nextInt(4);
+            switch (indicator) {
+                case 0:
+                    return new Swordsman();
+                case 1:
+                    return new Archer();
+                case 2:
+                    return new Brutal();
+                case 3:
+                    return new Assassin();
+            }
+            return null;
+        }
+    }
+
     private Combat[] tournamentSchedule;
 
     public TournamentSchedule(int numberOfRounds) {
@@ -14,7 +38,7 @@ public class TournamentSchedule {
             if (i < tournamentSchedule.length / 2)
                 tournamentSchedule[i] = null;
             else
-                tournamentSchedule[i] = new Combat(new Swordsman(), new Swordsman());
+                tournamentSchedule[i] = new Combat(GladiatorType.getRandomGladiatorType(), GladiatorType.getRandomGladiatorType());
         }
         System.out.println();
     }
