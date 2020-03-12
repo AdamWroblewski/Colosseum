@@ -12,6 +12,10 @@ public class Main {
         Gladiator swordsman = new Swordsman();
         Gladiator brutal = new Brutal();
         Combat combat = new Combat(swordsman, brutal);
-        combat.simulateCombat();
+        Gladiator swordsman2 = new Swordsman();
+        Gladiator brutal2 = new Brutal();
+        Combat combat2 = new Combat(swordsman2, brutal2);
+        Combat combat3 = new Combat(combat.simulateCombat(), combat2.simulateCombat());
+        combat3.simulateCombat();
     }
 }
