@@ -16,6 +16,8 @@ public abstract class Gladiator {
     private String name;
     private float damageDealt;
 
+    private int upperChanceLimit = 100;
+
     private static List<String> names = new ArrayList<>(Arrays.asList(
             "Flash", "Demon", "Grace", "Wiggles",
             "Lucky", "Torch", "Charisma", "Jumper",
@@ -34,18 +36,19 @@ public abstract class Gladiator {
     }
 
     private int generateStatistic() {
-        int upperLimit = 100;
-        return random.nextInt(upperLimit) + 1; // + 1 to generate random number in range 1-100
+        return random.nextInt(upperChanceLimit) + 1; // + 1 to generate random number in range 1-100
     }
 
     public void attack(Gladiator enemy) {
+        int lowerChangeLimit = 10;
+
         float unclampedChance = this.getDEX() - enemy.getDEX();
-        float chance = Math.max(10, Math.min(unclampedChance, 100));
+        float chance = Math.max(lowerChangeLimit, Math.min(unclampedChance, upperChanceLimit));
         float lowerAttackRange = 0.1F;
         float upperAttackRange = 0.5F;
         damageDealt = (float) (lowerAttackRange + Math.random() * (upperAttackRange - lowerAttackRange)) * this.getSP();
 
-        if (random.nextFloat() * 100 < chance) {
+        if (random.nextFloat() * 100 < chance) { // * 100 to alignment of the order of number
             enemy.decreaseHP(enemy, damageDealt);
         } else
             damageDealt = 0;
