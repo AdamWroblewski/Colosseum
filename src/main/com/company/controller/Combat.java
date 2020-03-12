@@ -24,12 +24,13 @@ public class Combat {
     }
 
     public Gladiator simulateCombat() {
-
+        messageDisplayer.displayMessageBeforeCombat(firstGladiator, secondGladiator);
         while (!isFightEnd) {
             simulateTurn(firstGladiator, secondGladiator);
             if (isFightEnd) break;
 
             simulateTurn(secondGladiator, firstGladiator);
+            System.out.println();
         }
         assert winner != null;
         winner.advanceLvl();
@@ -41,6 +42,8 @@ public class Combat {
     private void simulateTurn(Gladiator attacker, Gladiator defender) {
         attacker.attack(defender);
         messageDisplayer.displayCombatMessage(attacker);
+        if (attacker.getDamageDealt() > 0)
+            messageDisplayer.displayCurrentHp(defender);
         if (defender.getHP() < 0) {
             winner = attacker;
             loser = defender;
