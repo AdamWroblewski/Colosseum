@@ -46,6 +46,9 @@ public class TournamentSchedule {
     public Gladiator startTournament() {
 
         for (int i = tournamentSchedule.length - 1; i >= 0; i--) {
+            if (tournamentSchedule.length == 1){
+                return tournamentSchedule[0].simulateCombat();
+            }
             if (i == 0)
                 return new Combat(tournamentSchedule[1].simulateCombat(),
                         tournamentSchedule[2].simulateCombat()).simulateCombat();
