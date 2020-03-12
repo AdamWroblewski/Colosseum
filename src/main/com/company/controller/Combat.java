@@ -18,20 +18,22 @@ public class Combat {
         this.secondGladiator = secondGladiator;
     }
 
-    public void simulateCombat() {
+    public Gladiator simulateCombat() {
 
         while (!isFightEnd) {
-            simulateTrun(firstGladiator, secondGladiator);
+            simulateTurn(firstGladiator, secondGladiator);
             if (isFightEnd) break;
 
-            simulateTrun(secondGladiator, firstGladiator);
+            simulateTurn(secondGladiator, firstGladiator);
         }
         assert winner != null;
         winner.advanceLvl();
         messageDisplayer.displayMessageAfterWinningCombat(winner, loser);
+
+        return winner;
     }
 
-    private void simulateTrun(Gladiator attacker, Gladiator defender) {
+    private void simulateTurn(Gladiator attacker, Gladiator defender) {
         attacker.attack(defender);
         messageDisplayer.displayCombatMessage(attacker);
         if (defender.getHP() < 0) {
