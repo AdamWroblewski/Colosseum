@@ -3,6 +3,7 @@ package com.company.controller;
 import com.company.model.gladiators.Gladiator;
 import com.company.view.MessageDisplayer;
 
+// todo rozdzielić na model i kontroler
 public class Combat {
 
     private Gladiator firstGladiator;
@@ -23,6 +24,7 @@ public class Combat {
         messageDisplayer.displayWholeGladiatorData(secondGladiator);
     }
 
+    // todo wywoływać tylko raz metodę simulateTurn, przekazać obiekt np. tablicę z gladiatorami
     public Gladiator simulateCombat() {
         messageDisplayer.displayMessageBeforeCombat(firstGladiator, secondGladiator);
         while (!isFightEnd) {

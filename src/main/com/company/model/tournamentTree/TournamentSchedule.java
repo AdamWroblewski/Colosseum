@@ -5,6 +5,7 @@ import com.company.model.gladiators.*;
 
 import java.util.Random;
 
+// todo divide to model and controller
 public class TournamentSchedule {
 
     private enum GladiatorType {

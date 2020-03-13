@@ -11,8 +11,11 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         MessageDisplayer messageDisplayer = new MessageDisplayer();
+
         messageDisplayer.displayWelcomeMessage();
-        TournamentSchedule schedule = new TournamentSchedule(scanner.nextInt());
+        int numberOfTournamentStages = scanner.nextInt();
+        TournamentSchedule schedule = new TournamentSchedule(numberOfTournamentStages);
+
         Gladiator winner = schedule.startTournament();
         messageDisplayer.displayWinnerOfTournament(winner);
     }

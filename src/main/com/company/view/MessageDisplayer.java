@@ -44,7 +44,7 @@ public class MessageDisplayer {
     }
 
     public void displayCurrentHp(Gladiator gladiator) {
-        System.out.println(String.format("%s has HP left %s", gladiator.getName(), gladiator.getHP()));
+        System.out.println(String.format("%s has %s HP left", gladiator.getName(), gladiator.getHP()));
     }
 
     public void displayWinnerOfTournament(Gladiator gladiator) {
