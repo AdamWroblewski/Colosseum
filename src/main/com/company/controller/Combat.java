@@ -24,14 +24,12 @@ public class Combat {
         messageDisplayer.displayWholeGladiatorData(secondGladiator);
     }
 
-    // todo wywoływać tylko raz metodę simulateTurn, przekazać obiekt np. tablicę z gladiatorami
     public Gladiator simulateCombat() {
         messageDisplayer.displayMessageBeforeCombat(firstGladiator, secondGladiator);
+        Gladiator[] gladiators = {firstGladiator, secondGladiator};
         while (!isFightEnd) {
-            simulateTurn(firstGladiator, secondGladiator);
-            if (isFightEnd) break;
-
-            simulateTurn(secondGladiator, firstGladiator);
+            changeGladiatorRoles(gladiators);
+            simulateTurn(gladiators);
             System.out.println();
         }
         assert winner != null;
@@ -41,7 +39,15 @@ public class Combat {
         return winner;
     }
 
-    private void simulateTurn(Gladiator attacker, Gladiator defender) {
+    private void changeGladiatorRoles(Gladiator[] gladiators) {
+        Gladiator buffer = gladiators[0];
+        gladiators[0] = gladiators[1];
+        gladiators[1] = buffer;
+    }
+
+    private void simulateTurn(Gladiator[] gladiators) {
+        Gladiator attacker = gladiators[0];
+        Gladiator defender = gladiators[1];
         attacker.attack(defender);
         messageDisplayer.displayCombatMessage(attacker);
         if (attacker.getDamageDealt() > 0)
