@@ -14,9 +14,6 @@ public class Combat {
     private boolean isFightEnd = false;
     private MessageDisplayer messageDisplayer = new MessageDisplayer();
 
-    public Combat() {
-    }
-
     public Combat(Gladiator firstGladiator, Gladiator secondGladiator) {
         this.firstGladiator = firstGladiator;
         this.secondGladiator = secondGladiator;
