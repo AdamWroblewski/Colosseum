@@ -54,9 +54,12 @@ public abstract class Gladiator {
             damageDealt = 0;
     }
 
-    // todo nie odnosić się do pol innej instancji
     private void decreaseHP(Gladiator enemy, float dmg) {
-        enemy.baseHP -= dmg;
+        enemy.setHp(dmg / lvl);
+    }
+
+    private void setHp(float hp) {
+        baseHP -= hp;
     }
 
     public float getHP() {
