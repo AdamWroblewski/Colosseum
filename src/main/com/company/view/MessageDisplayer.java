@@ -29,11 +29,11 @@ public class MessageDisplayer {
         displayWholeGladiatorData(firstGladiator);
         displayWholeGladiatorData(secondGladiator);
         System.out.println("To start combat press enter.");
-        try {
-            System.in.read();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            System.in.read();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void displayMessageAfterWinningCombat(Gladiator winner, Gladiator loser) {
