@@ -17,12 +17,19 @@ public class CombatController {
         Gladiator secondGladiator = combat.getSecondGladiator();
         messageDisplayer.displayMessageBeforeCombat(firstGladiator, secondGladiator);
         Gladiator[] gladiators = {firstGladiator, secondGladiator};
+
         while (!combat.isFightEnd()) {
             changeGladiatorRoles(gladiators);
             combat.simulateTurn(gladiators);
+            messageDisplayer.displayCombatMessage(gladiators[0], gladiators[1]);
             messageDisplayer.println();
         }
-        return combat.getWinner();
+
+        Gladiator winner = combat.getWinner();
+        Gladiator loser = combat.getLoser();
+        winner.advanceLvl();
+        messageDisplayer.displayMessageAfterWinningCombat(winner, loser);
+        return winner;
     }
 
     private static void changeGladiatorRoles(Gladiator[] gladiators) {
