@@ -1,5 +1,6 @@
 package com.company.view;
 
+import com.company.model.combat.Combat;
 import com.company.model.gladiators.Gladiator;
 
 import java.util.Scanner;
@@ -21,6 +22,16 @@ public class MessageDisplayer {
                 gladiator.getHP(), gladiator.getSP(),
                 gladiator.getDEX(), gladiator.getLvl()));
 
+    }
+
+    public void displayAllGladiatorsInfo(Combat[] combats) {
+        for (Combat combat : combats) {
+            if (combat != null) {
+                displayWholeGladiatorData(combat.getFirstGladiator());
+                displayWholeGladiatorData(combat.getSecondGladiator());
+                println();
+            }
+        }
     }
 
     public void displayMessageBeforeCombat(Gladiator firstGladiator, Gladiator secondGladiator) {
@@ -54,5 +65,9 @@ public class MessageDisplayer {
 
     public void displayWelcomeMessage() {
         System.out.println("Ave and welcome to the Colosseum! How many stages of the Tournament do you wish to watch? : ");
+    }
+
+    public void println() {
+        System.out.println();
     }
 }
