@@ -8,18 +8,19 @@ import com.company.view.MessageDisplayer;
 import java.util.Scanner;
 
 public class Colosseum {
-    private static MessageDisplayer messageDisplayer = new MessageDisplayer();
 
     public static void main(String[] args) {
+        MessageDisplayer messageDisplayer = new MessageDisplayer();
         Scanner scanner = new Scanner(System.in);
 
         messageDisplayer.displayWelcomeMessage();
         int numberOfTournamentStages = scanner.nextInt();
 
-        TournamentSchedule tournament = new TournamentSchedule(numberOfTournamentStages);
+        TournamentSchedule tournament = new TournamentSchedule();
+        tournament.prepareTournamentSchedule(numberOfTournamentStages);
         TournamentController tournamentController = new TournamentController(tournament, messageDisplayer);
-        Combat[] schedule = tournament.getTournamentSchedule();
 
+        Combat[] schedule = tournament.getTournamentSchedule();
         messageDisplayer.displayAllGladiatorsInfo(schedule);
 
         Gladiator winner = tournamentController.startTournament();
