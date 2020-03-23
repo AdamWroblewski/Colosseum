@@ -1,15 +1,12 @@
 package com.company.model.tournamentTree;
 
 import com.company.model.combat.Combat;
-import com.company.model.gladiators.*;
 
-import java.util.Random;
-
-public class TournamentSchedule {
+public class TournamentSchedule implements Tournamentable {
 
     private Combat[] tournamentSchedule;
 
-    public TournamentSchedule(int numberOfRounds) {
+    public void prepareTournamentSchedule(int numberOfRounds) {
         int numberOfFights = (int) Math.pow(2, numberOfRounds) - 1;
         tournamentSchedule = new Combat[numberOfFights];
     }
