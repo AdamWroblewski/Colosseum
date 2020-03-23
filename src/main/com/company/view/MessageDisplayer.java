@@ -9,11 +9,12 @@ public class MessageDisplayer {
 
     Scanner scanner = new Scanner(System.in);
 
-    public void displayCombatMessage(Gladiator gladiator) {
-        if (gladiator.getDamageDealt() > 0)
-            System.out.println(String.format("%s deals %s damage", gladiator.getName(), gladiator.getDamageDealt()));
-        else
-            System.out.println(String.format("%s misses", gladiator.getName()));
+    public void displayCombatMessage(Gladiator attacker, Gladiator defender) {
+        if (attacker.getDamageDealt() > 0) {
+            System.out.println(String.format("%s deals %s damage", attacker.getName(), attacker.getDamageDealt()));
+            displayDefenderCurrentHp(defender);
+        } else
+            System.out.println(String.format("%s misses", attacker.getName()));
     }
 
     public void displayWholeGladiatorData(Gladiator gladiator) {
@@ -54,7 +55,7 @@ public class MessageDisplayer {
                 winner.getDEX(), winner.getLvl()));
     }
 
-    public void displayCurrentHp(Gladiator gladiator) {
+    private void displayDefenderCurrentHp(Gladiator gladiator) {
         System.out.println(String.format("%s has %s HP left", gladiator.getName(), gladiator.getHP()));
     }
 
