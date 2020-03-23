@@ -12,17 +12,15 @@ public class TournamentController {
     private static Random random = new Random();
     private TournamentSchedule tournamentSchedule;
     private CombatController combatController;
-    private MessageDisplayer messageDisplayer;
     private Combat[] combats;
 
     public TournamentController(TournamentSchedule tournamentSchedule, MessageDisplayer messageDisplayer) {
         this.tournamentSchedule = tournamentSchedule;
-        this.messageDisplayer = messageDisplayer;
         this.combatController = new CombatController(messageDisplayer);
-        createTournamentSchedule();
+        pairGladiatorsIntoCombats();
     }
 
-    private void createTournamentSchedule() {
+    private void pairGladiatorsIntoCombats() {
         combats = tournamentSchedule.getTournamentSchedule();
         for (int i = 0; i < combats.length; i++) {
             if (i < combats.length / 2)
