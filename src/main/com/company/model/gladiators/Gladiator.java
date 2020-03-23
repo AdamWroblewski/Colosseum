@@ -29,7 +29,7 @@ public abstract class Gladiator {
             "Skinny", "Speed", "Knight", "Reaper"));
 
     public Gladiator(float hpModifier, float spModifier, float dexModifier) {
-        name = names.remove(0);
+        name = names.get(random.nextInt(names.size()));
         baseHP = generateStatistic() * hpModifier;
         baseSP = generateStatistic() * spModifier;
         baseDex = generateStatistic() * dexModifier;
@@ -49,17 +49,21 @@ public abstract class Gladiator {
         damageDealt = (float) (lowerAttackRange + Math.random() * (upperAttackRange - lowerAttackRange)) * this.getSP();
 
         if (random.nextFloat() * 100 < chance) { // * 100 to alignment of the order of number
-            enemy.decreaseHP(enemy, damageDealt);
+            enemy.decreaseEnemyHp(enemy, damageDealt);
         } else
             damageDealt = 0;
     }
 
-    private void decreaseHP(Gladiator enemy, float dmg) {
-        enemy.setHp(dmg / lvl);
+    private void decreaseEnemyHp(Gladiator enemy, float dmg) {
+        enemy.setHpByDmg(dmg / lvl);
     }
 
-    private void setHp(float hp) {
+    private void setHpByDmg(float hp) {
         baseHP -= hp;
+    }
+
+    public boolean isAlive() {
+        return baseHP > 0;
     }
 
     public float getHP() {
