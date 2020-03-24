@@ -6,6 +6,7 @@ public class TournamentSchedule implements Tournamentable {
 
     private Combat[] tournamentSchedule;
 
+    @Override
     public void prepareTournamentSchedule(int numberOfRounds) {
         int numberOfFights = (int) Math.pow(2, numberOfRounds) - 1;
         tournamentSchedule = new Combat[numberOfFights];
