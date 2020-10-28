@@ -11,4 +11,4 @@
  
 ## Usage
 
-As a user you insert number of stages you want too simulate, then the tournament is played.
+As a user, you enter the number of stages you want to simulate and then the tournament is played.
